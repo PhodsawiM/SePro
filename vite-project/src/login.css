@@ -1,0 +1,298 @@
+@media only screen and (min-width: 500px) {
+.JustBox{
+    /* margin: auto auto; */
+    /* background-color: rgb(211, 229, 241); */
+
+}
+.containerLog{
+    position: relative; /* Makes this the reference point for the absolute element */
+    width: 100%;
+    height: 100%;
+
+    /* border: 2px solid #333; */
+    overflow: hidden;
+}
+
+.LogTop.Left{
+    width: 65%;
+    transform: translateX(54%);
+    position: absolute;
+    border-radius: 30px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid blue; */
+    background-color: #aed6f1;
+    transition: transform  0.7s;
+
+}
+.LogTop.Left .blockOne{
+    display: none;
+}
+.LogTop.Right .blockTwo{
+    display: none;
+}
+.LogTop.Right{
+    width: 65%;
+    transform: translateX(0%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #aed6f1;
+    transition: transform  0.7s;
+}
+.LogBot.Left2{
+    width: 35%;
+    transform: translateX(-0%);
+    position: absolute;
+    border-radius: 30px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid blue; */
+    transition: transform  0.5s;
+    background-color: rgb(68, 138, 204);
+    color: aliceblue;
+    transition: transform  0.7s;
+}
+.LogBot.Right2{
+    color: aliceblue;
+    width: 35%;
+    transform: translateX(186%);
+    position: absolute;
+    background-color: rgb(68, 138, 204);
+    border-radius: 30px;
+    top: 0;
+    right:0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform  0.7s;
+}
+.subContent div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+}
+.subContent div .MuiInputBase-root{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #ffffff;
+
+}
+.subContent div .MuiInputBase-root input{
+    margin-inline: -30px ;
+     text-align: center;
+}
+
+
+.LogBot.Right2 .Botton{
+    color: aliceblue;
+
+}
+.LogBot.Right2 .blockTwo{
+    color: aliceblue;
+    display: none;
+}
+.LogBot.Left2 .blockOne{
+    color: aliceblue;
+    display: none;
+}
+.LogBot.Right2 .blockOne p{
+    padding-inline: 20px;
+}
+.LogBot.Left2 .blockTwo p{
+    padding: 20px;
+}
+.LogBot.Right2 .blockOne a img{
+    transition: transform  4s ease;
+    transform: rotate(-0deg);
+}
+.LogBot.Left2 .blockTwo a img{
+    transition: transform 4s ease;
+    transform: rotate(180deg);
+}
+}
+
+
+
+
+@media only screen and (max-width: 640px) {
+    .JustBox{
+        left: 0;
+    }
+    .JustBox .BoxXa{
+        height: 80vh;
+        width: 100%;
+        background-color: #aed6f1;
+        margin-inline: 0px;
+        color: rgb(0, 0, 0);
+        border: 0px solid rgb(0, 0, 0);
+        border-radius: 30px;
+        display: flex;
+        
+    }
+    .containerLog{
+        position: relative; /* Makes this the reference point for the absolute element */
+        width: 100%;
+        height: 100%;
+        /* border: 2px solid #333; */
+        overflow: hidden;
+    }
+
+    .LogTop.Left{
+        width: 65%;
+        transform: translateX(54%);
+        position: absolute;
+        border-radius: 30px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px solid blue; */
+        background-color: #aed6f1;
+        transition: transform  0.7s;
+
+    }
+    .LogTop.Left .blockOne{
+        display: none;
+    }
+    .LogTop.Right .blockTwo{
+        display: none;
+    }
+    .LogTop.Right{
+        width: 65%;
+        transform: translateX(0%);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #aed6f1;
+        transition: transform  0.7s;
+    }
+    .LogBot.Left2{
+        width: 35%;
+        transform: translateX(-0%);
+        position: absolute;
+        border-radius: 30px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left:0;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px solid blue; */
+        transition: transform  0.5s;
+        background-color: rgb(68, 138, 204);
+        color: aliceblue;
+        transition: transform  0.7s;
+    }
+    .LogBot.Right2{
+        color: aliceblue;
+        width: 35%;
+        transform: translateX(186%);
+        position: absolute;
+        background-color: rgb(68, 138, 204);
+        border-radius: 30px;
+        top: 0;
+        right:0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        /* border: 1px solid blue; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: transform  0.7s;
+    }
+    .subContent div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 3px;
+    }
+    .subContent div .MuiInputBase-root{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        background-color: #ffffff;
+
+    }
+    .subContent div .MuiInputBase-root input{
+        margin-inline: -30px ;
+        text-align: center;
+    }
+
+
+    .LogBot.Right2 .Botton{
+        color: aliceblue;
+
+    }
+    .LogBot.Right2 .blockTwo{
+        color: aliceblue;
+        display: none;
+    }
+    .LogBot.Left2 .blockOne{
+        color: aliceblue;
+        display: none;
+    }
+    .LogBot.Right2 .blockOne p{
+        padding-inline: 20px;
+    }
+    .LogBot.Left2 .blockTwo p{
+        padding: 20px;
+    }
+    .LogBot.Right2 .blockOne a img{
+        transition: transform  4s ease;
+        transform: rotate(-0deg);
+    }
+    .LogBot.Left2 .blockTwo a img{
+        transition: transform 4s ease;
+        transform: rotate(180deg);
+    }
+}

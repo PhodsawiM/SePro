@@ -1,0 +1,159 @@
+@media only screen and (min-width: 500px) {
+    .myNavDev{
+        display: none;
+    }
+    .navnha{
+        background-color: rgb(130, 185, 234);
+        padding: 0px;
+        height: 75px;
+        color: #fff;
+    }
+    .Login{
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    .Ifont{
+        font-size: 20px;
+        padding-inline: 2px ;
+    }
+    .Ifontmain{
+        border-style: solid;
+        border-right: px;
+        border-top: 0px;
+        border-bottom:0px ;
+        border-left: 0px;
+        padding-right: 10px ;
+        height: 60px;
+        margin-bottom: 5px;
+        padding-bottom: 10px;
+    }
+    .Ifont a{
+        color: rgb(255, 255, 255);
+    }
+    .Ifont a:hover{
+        color:rgb(26, 54, 120);
+        font-weight:bold;
+    }
+    .MenuMoCon{
+        display: none;
+        position: absolute;
+        left: -9999px;
+    }
+    .MenuTexa{
+        display: none;
+        position: absolute;
+        left: -9999px;
+    }
+    .ConAli{
+        display: flex;
+        margin-top: 0px;
+    }
+    .ConAli a{
+        margin-top: 10px;
+    }
+}
+
+
+@media only screen and (max-width: 640px) {
+    .myNavDev{
+        display: none;
+    }
+    .navnha{
+        padding: 0px;
+        height: 80px;
+        background-color: rgb(130, 185, 234);
+    }
+    .Login{
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+    }
+    /* .nacCon{
+        
+    
+    }
+    .Ifontmain{
+        
+    } */
+    .Ifont{
+       display: none;
+       position: absolute;
+        left: -9999px;
+    }
+    .Ifontmain{
+        border-style: solid;
+        border-right: px;
+        border-top: 0px;
+        border-bottom:0px ;
+        border-left: 0px;
+        padding-right: 10px ;
+        height: 60px;
+        margin-bottom: 5px;
+        padding-bottom: 10px;
+    }
+    .MenuMoCon{
+        display: grid;
+        grid-template-columns: auto auto;
+        
+    }
+    .MenuMoCon div{
+        padding-right: 15px;
+
+    }
+    .HomeMo{
+        display: flex;
+    }
+    .MeMo{
+        display: flex;
+        flex-direction: column;
+        margin-inline: 10px;
+    }
+    .MeMo a{
+        font-size: 30px;
+        font-weight: 900;
+    }
+    .MeMo img{
+        padding: -20px;
+    }
+    .MeMoMe{
+        display: none;
+        position: absolute;
+        z-index: 10;
+        /* margin: auto auto; */
+        height: auto;
+        width: 88vw;
+        left: 50%;
+        top: 10vh;
+        background-color: rgb(47, 52, 80);
+        transform: translate(-50%);
+        opacity: 0.8;
+        border-radius: 20px;
+    }
+    .MenuTexa{
+        margin:20px auto;
+        color: #fff;
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .MenuTexa a{
+        font-size: 20px;
+    }
+    .MenuTexa a{
+        text-decoration: none;
+        color: #fff;
+        text-align: start;
+        padding-left: 10px;
+    }
+    .MenuTexa div a{
+        text-align: left;
+        margin-left: 20px;
+        color: #fff;
+        text-decoration: none;
+    }
+    .ConAli{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}

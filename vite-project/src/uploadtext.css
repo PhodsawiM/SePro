@@ -1,0 +1,11 @@
+.UploadBox{
+    width: 80vw;
+    height: 80vh;
+    background-color: #aed6f1;
+    margin: auto auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    border-style: dashed;
+    border: 10px;
+    border-color: black;
+}

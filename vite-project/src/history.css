@@ -1,0 +1,50 @@
+@media only screen and (min-width: 500px) {
+    .HisBox{
+        width: 80vw;
+        height: 90vh;
+        background-color: #aed6f1;
+        margin: auto auto;
+        margin-top: 5%;
+        border-radius: 10px;
+        border-style: solid;
+        border: 10px;
+        border-color: black;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        border: 2px solid #aed6f1;
+    }
+    .HisBox .HisItem{
+        background-color: rgb(242, 242, 242);
+        height: 30vh;
+        width: 98%;
+        margin-inline: auto;
+        margin-block: 10px;
+        color: rgb(0, 0, 0);
+    }
+}
+@media only screen and (max-width: 640px) {
+    .HisBox{
+        width: 80vw;
+        height: 90vh;
+        background-color: #aed6f1;
+        margin: auto auto;
+        margin-top: 5%;
+        border-radius: 10px;
+        border-style: solid;
+        border: 10px;
+        border-color: black;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        border: 2px solid #aed6f1;
+    }
+    .HisBox .HisItem{
+        background-color: rgb(242, 242, 242);
+        height: 30vh;
+        width: 98%;
+        margin-inline: auto;
+        margin-block: 10px;
+        color: rgb(0, 0, 0);
+    }
+}

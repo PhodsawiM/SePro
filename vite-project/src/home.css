@@ -1,0 +1,120 @@
+@media only screen and (min-width: 500px) {
+.objecCon{
+    display: grid;
+    grid-template-columns: 60% auto;
+    /* margin-top: -150px */
+    padding: 100px;
+    margin-block: -80px;
+
+}
+/* .HmaBox{
+    padding: 200px;
+    margin-block: -150px;
+} */
+hr{
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    background-color: black;
+    width: 90%;
+    margin: 20px auto;
+}
+.ConR{
+    height: 10px;
+    margin-right: 35%;
+
+}
+.ConL{
+    width: 20%;
+    margin-left: -55%;
+}
+
+.homeWelT h1{
+    font-size: 50px;
+
+}
+.homeWelT p{
+    font-size: 15px;
+}
+.objecCon div{
+    width: auto;
+    padding: 15px;
+    /* border-style: solid; */
+    font-size: 25px;
+}
+.objecCon div div{
+    height: 50vh;
+    background-color: rgb(196, 229, 255);
+    border-radius: 10px;
+    padding: 5px;
+    text-align: left;
+}
+
+ .submit-btn{
+    background-color: #ffffff;
+    border-style: solid;
+    border-radius: 50px;
+    margin-bottom: 80px;
+    padding-inline: 50px;
+ }
+ .submit-btn a{
+    text-decoration: none;
+    font-size: 50px;
+    font-weight:bold;
+
+ }
+}
+@media only screen and (max-width: 640px) {
+.objecCon{
+    display: grid;
+    grid-template-columns: 60% auto;
+    padding: 20px;
+}
+
+.homeWelT h1{
+    font-size: 30px;
+}
+.homeWelT p{
+    font-size: 13px;
+}
+.ConR{
+    width: 60%;
+}
+.ConL{
+    width: 160%;
+    margin-left: -60%;
+}
+.objecCon div{
+    height: 100%;
+    padding: 5px;
+
+
+}
+.objecCon div div{
+    height: 200px;
+    /* border-style: solid; */
+    border-radius: 10px;
+
+    padding: 5px;
+    background-color:#dcf3ff;
+    font-size: 13px;
+}
+
+/* .objecCon div div img{
+    height: 420px;
+} */
+.submit-btn{
+
+    background-color: #ffffff;
+    border-style: solid;
+    border-radius: 50px;
+    margin-bottom: 15px;
+    padding-inline: 50px;
+ }
+ .submit-btn a{
+    text-decoration: none;
+    font-size: 50px;
+    font-weight:bold;
+
+ }
+}

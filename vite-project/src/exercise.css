@@ -1,0 +1,158 @@
+@media only screen and (min-width: 500px) {
+    .VBOX{
+        width: 80vw;
+        height: 80vh;
+        background-color: #aed6f1;
+        margin: auto auto;
+        margin-top: 5%;
+        border-radius: 10px;
+        border-style: solid;
+        border: 10px;
+        border-color: black;
+        position: relative;
+        overflow: hidden;
+
+    }
+    .VBOXcon{
+        width: 90%;
+        height: 90%;
+        /* margin-top: 10px; */
+        /* border: 1px solid black; */
+        margin: auto auto;
+        margin-block: 3%;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
+    .VBOX .VBOXcon .SubBoxCer{
+        /* margin-top: 20px; */
+        width: 100%;
+        /* margin: 5px; */
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        /* justify-items: center;
+        justify-content: center; */
+    }
+    /* .VBOX .VBOXcon .SubBoxCer p{
+        width: ;
+        /* margin-top: 50%; */
+        /* justify-content: center; */
+        /* /* margin-inline: 10px; */
+        /* margin-block: 5%; */ 
+        /* margin-top: 8%; }*/
+    .SubBoxCer img{
+        justify-items: start;
+    }
+    .ItemImg{
+        border: 1px solid indigo;
+        margin: 5px;
+
+    }
+    .ItemText{
+        margin: 5px;
+        text-align: start;
+    }
+    .GoToEx{
+        display: flex;
+        height: 100%;
+        margin-left: auto;
+        margin-right: 10px;
+        /* margin-block: auto; */
+    }
+    .GoToEx a img{
+        background-color: black;
+        justify-content: center;
+        justify-items: center;
+        margin: auto auto;
+
+    }
+    .GoToEx a{
+        height: 100%;
+        margin: auto auto;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+}
+
+
+@media only screen and (min-width: 100px)
+{
+    .VBOX{
+        width: 80vw;
+        height: 80vh;
+        background-color: #aed6f1;
+        margin: auto auto;
+        margin-block: 5%;
+        border-radius: 10px;
+        border-style: solid;
+        border: 10px;
+        border-color: black;
+        position: relative;
+        overflow: hidden;
+
+    }
+    .VBOXcon{
+        width: 90%;
+        height: 90%;
+        /* margin-top: 10px; */
+        /* border: 1px solid black; */
+        margin: auto auto;
+        margin-block: 3%;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
+    .VBOX .VBOXcon .SubBoxCer{
+        /* margin-top: 20px; */
+        width: 100%;
+        /* margin: 5px; */
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        /* justify-items: center;
+        justify-content: center; */
+    }
+    /* .VBOX .VBOXcon .SubBoxCer p{
+        width: ;
+        /* margin-top: 50%; */
+        /* justify-content: center; */
+        /* /* margin-inline: 10px; */
+        /* margin-block: 5%; */
+        /* margin-top: 8%; */
+    .SubBoxCer img{
+        justify-items: start;
+    }
+    .ItemImg{
+        border: 1px solid indigo;
+        margin: 5px;
+
+    }
+    .ItemText{
+        margin: 5px;
+        text-align: start;
+    }
+    .GoToEx{
+        display: flex;
+        height: 100%;
+        margin-left: auto;
+        margin-right: 10px;
+        /* margin-block: auto; */
+    }
+    .GoToEx a img{
+        background-color: black;
+        justify-content: center;
+        justify-items: center;
+        margin: auto auto;
+
+    }
+    .GoToEx a{
+        height: 100%;
+        margin: auto auto;
+        justify-content: center;
+        justify-items: center;
+    }
+}

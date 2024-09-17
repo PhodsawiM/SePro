@@ -1,0 +1,14 @@
+.BoxXa{
+    /* min-height: 30vh; */
+    height: 80vh;
+    background-color: #aed6f1;
+    margin-inline: 20%;
+    margin-block: 5%;
+    color: rgb(0, 0, 0);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    justify-content: center;
+}

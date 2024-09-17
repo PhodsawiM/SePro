@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .fade {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+    .fade:hover{
+      animation: fadeInOut 10s infinite;
+
+    }
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fade"></div>
+</body>
+</html>
