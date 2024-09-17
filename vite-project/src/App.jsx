@@ -79,9 +79,9 @@ function App() {
           <a href="/excercise"><li>Exsercise</li></a>
           <a href='/analyze'><li>Analyze</li></a>
           <a href='/history'><li>History</li></a>
-          <a href='admin/changelocation'><li>Changelocation</li></a>
-          <a href='admin/addtext'><li>addtext</li></a>
-          <a href='admin/changelocation'><li>changelocation</li></a>
+          <a href='/changelo'><li>Changelocation</li></a>
+          <a href='/upload'><li>addtext</li></a>
+          <a href='/dash'><li>Dash</li></a>
         </div>
       </div>
       <Routes>
