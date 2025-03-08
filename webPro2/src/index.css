@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('https://192.168.1.194:5173/font/Itim/Itim-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+/*   
+  @font-face {
+    font-family: 'Rubik';
+    src: url('https://192.168.1.194:5173/font/Caveat/static/Caveat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Rubik';
+    src: url('https://192.168.1.194:5173/font/Caveat/static/Caveat-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'Rubik';
+    src: url('https://192.168.1.194:5173/font/Caveat/static/Caveat-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+  }
+   */
+  /* Apply the font globally */
+  body {
+    font-family: 'Rubik', sans-serif;
+  }
+@keyframes gradientX {
+  0% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 400% 400%;
+  animation: gradientX 15s ease infinite;
+}

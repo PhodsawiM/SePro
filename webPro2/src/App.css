@@ -1,0 +1,44 @@
+#root {
+  text-align: center;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url('/Rubik/static/Rubik-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('/Rubik/static/Rubik-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

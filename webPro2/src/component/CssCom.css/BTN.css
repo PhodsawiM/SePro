@@ -1,0 +1,8 @@
+.BtnMain{
+    background-color: rgb(49, 98, 163);
+    color: aliceblue;
+    border-radius: 5px;
+    border: 0px;
+    height: 6vh;
+    width: 8vw;
+}

@@ -1,0 +1,262 @@
+@media only screen and (min-width: 500px) {
+    .loginContainer{
+        /* background-color: black; */
+        height: 450px;
+        width: 70%;
+        margin: auto;
+        padding: 20px;
+    }
+    .loginContainer div{
+        display: grid;
+        grid-template-columns: 65% auto;
+        grid-template-areas:'col1 col2 col3';
+        color: rgb(103, 150, 216);
+        height: 440px;
+        width: auto;
+        padding: 3px;
+        /* background-color: rgb(165, 205, 255); */
+
+        /* border-style:solid ;
+        border-color: black; */
+    }
+    h1{
+        color: black;
+    }
+    p{
+        color: black;
+    }
+    .loginContainer div div{
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        background-color: rgb(103, 150, 216);
+        /* justify-content: center; */
+        border-style: solid;
+    }
+    .loginContainer div div.Rme{
+        background-color: rgb(103, 150, 216);
+        padding: 0px;
+        /* height: ; */
+    }
+    .loginContainer div div.Lme{
+        background-color: rgb(255, 255, 255);
+        padding: 0px;
+        /* height: ; */
+    }
+    .loginContainer div div.Lme div{
+        width: 15vw;
+        background-color: rgb(255, 255, 255);
+        padding: 0px;
+        /* height: ; */
+    }
+    .Lme{
+        grid: col1;
+        justify-content: center;
+        justify-items: center;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    .Lme input{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 5vh;
+        width: 15vw;
+        border-radius: 10px;
+        justify-items: left;
+
+    }
+
+    /* .Rme div{
+        display: none;
+    } */
+
+    .Lme div{
+        border: 0px;
+        display: flex;
+        flex-direction:column;
+        padding: 0px;
+        height: 10%;
+    }
+    .Lme div p{
+        margin-bottom: -3px;
+        text-align: left;
+        width: 50;
+
+    }
+    .Rme{
+        grid-area: col2;
+        justify-content: center;
+        justify-items: center;
+        border-top-right-radius: 20px;  
+        border-bottom-right-radius: 20px;
+        background-color: rgb(103, 150, 216);
+        width: 1000vw;
+    }
+    .Rme div{
+        /* border: -110px; */
+        display: flex;
+        flex-direction:column;
+    
+        background-color: rgb(103, 150, 216);
+        height: 10%;
+    }
+    .Rme div p{
+        margin-bottom: -3px;
+        text-align: left;
+        width: 50;
+
+    }
+    .Rme div h1{
+        /* width: 100hw; */
+        background-color: rgb(103, 150, 216);
+
+    }
+
+    .SignCon{
+        background-color: rgb(103, 150, 216);
+
+    }
+    .SignCon div p{
+        background-color: rgb(103, 150, 216);
+        padding: 0px;
+        margin-top: 30px;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 640px) {
+    .loginContainer{
+        /* background-color: black; */
+        height: 50vh;
+        width: 100%;
+        margin-block: 10%;
+        padding: 20px;
+        margin: auto auto;
+    }
+    .loginContainer div{
+        display: grid;
+        /* grid-template-columns: 65% auto; */
+        color: rgb(103, 150, 216);
+        height: 220px;
+        width: auto;
+        padding: 3px;
+        /* background-color: rgb(165, 205, 255); */
+    
+        /* border-style:solid ;
+        border-color: black; */
+    }
+    h1{
+        color: black;
+    }
+    p{
+        color: black;
+    }
+    .loginContainer div div{
+        height: 80%;
+        padding: 0px;
+        margin: 0px;
+        background-color: rgb(103, 150, 216);
+        /* justify-content: center; */
+        border-style: solid;
+    }
+    .loginContainer div div.Rme{
+        background-color: rgb(103, 150, 216);
+        padding: 0px;
+        /* height: ; */
+    }
+    .loginContainer div div.Lme{
+        background-color: rgb(255, 255, 255);
+        padding: 0px;
+        /* height: ; */
+    }
+    .loginContainer div div.Lme div{
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        padding: 10px;
+        /* height: ; */
+    }
+    .Lme{
+        justify-content:center;
+        /* justify-items: center; */
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+
+
+    }
+    .Lme input{
+        display: flex;
+        height: 5vh;
+        width: 50vw;
+        border-radius: 10px;
+    }
+
+    .Lme div{
+        display: flex;
+        flex-direction: column;
+        border: 0px;
+        margin-top: 50px;
+        /* grid-column: auto; */
+
+        /* width: 200px;
+        height: 10%;
+        margin-left: 50px; */
+
+    }
+    .Lme div p{
+        margin-bottom: -5px;
+        text-align: left;
+        width: 50vw;
+    
+    }
+    .Rme{
+        justify-content: center;
+        justify-items: center;
+        border-bottom-left-radius: 20px;  
+        border-bottom-right-radius: 20px;
+        background-color: rgb(103, 150, 216);
+        width: 100vw;
+    }
+    .Rme div{
+        /* border: -110px; */
+        display: flex;
+        flex-direction:column;
+        background-color: rgb(103, 150, 216);
+        height: 10%;
+    }
+    .Rme div p{
+        margin-bottom: -3px;
+        text-align: left;
+    }
+    .Rme div h1{
+        /* width: 100hw; */
+        background-color: rgb(103, 150, 216);
+    
+    }
+    
+    .SignCon{
+        border-bottom-left-radius: 20px;  
+        border-bottom-right-radius: 20px;
+    
+    }
+    .SignCon div{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction:row-reverse;
+        border-bottom-left-radius: 20px;  
+        border-bottom-right-radius: 20px;
+        
+    }
+    .SignCon div p{
+        padding: 0px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .SignCon div img{
+        background-color: rgb(103, 150, 216);
+        padding: 0px;
+        /* margin-top: 30px; */
+        text-align: center;
+        border-bottom-right-radius: 20px;
+        margin-bottom: 10%;
+    }
+}

@@ -1,0 +1,11 @@
+.UploadBox div p {
+    margin-block: 20% auto;
+}
+.UploadBox div{
+    background-color: #aed6f1;
+    border: 20px dashed #aed6f1;
+    min-width: 100vh;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 30px;
+}

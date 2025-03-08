@@ -1,0 +1,72 @@
+@media only screen and (min-width: 500px) {
+.AnaBox{
+    width: 80vw;
+    height: 90vh;
+    background-color: #aed6f1;
+    margin: auto auto;
+    margin-block: 5%;
+    border-radius: 10px;
+    border-style: solid;
+    border: 10px;
+    border-color: black;
+    position: relative;
+    overflow: hidden;
+    /* display: flex;
+    flex-direction: column; */
+}
+.CameraBOX{
+    background-color: black;
+    width: 100%;
+    height: 90%;
+}
+.MenuBox{
+    margin-top: 1%;
+    
+}
+.MenuBox .BBtn{
+    height: 40px;
+    border-radius: 10px;
+    margin-inline:10px ;
+    background-color: aquamarine;
+}
+.BuaNa{
+    background-color:rgb(0, 0, 0);
+}
+
+}
+@media only screen and (max-width: 640px) {
+    .AnaBox{
+        width: 90vw;
+        height: 80vh;
+        background-color: #aed6f1;
+        margin: auto auto;
+        margin-block: 5%;
+        border-radius: 10px;
+        border-style: solid;
+        border: 10px;
+        border-color: black;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .CameraBOX{
+        background-color: black;
+        width: 100%;
+        height: 70%;
+    }
+    .MenuBox{
+        margin: auto auto;
+        
+    }
+    .MenuBox .BBtn{
+        /* height: 40px; */
+        border-radius: 10px;
+        margin-inline:10px ;
+        margin-block: 10px;
+        background-color: aquamarine;
+    }
+    .BuaNa{
+        background-color:rgb(0, 0, 0);
+    }
+}
