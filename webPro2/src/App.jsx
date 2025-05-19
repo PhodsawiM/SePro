@@ -21,10 +21,10 @@ import { ModelProvider } from './ModelContext';
 import {Profile,Popup} from './profile.jsx';
 import Footer from './footer';
 import Excercise2 from './excercise2'
-import { Login } from './login';
+import { Login }  from './login';
 import Signup from './signup';
 import ReactDOM from 'react-dom';
-import Dash from './dash';
+import {Dash} from './dash';
 import Changelocation from './changelocation';
 import Uploadtext from './uploadtext.jsx';
 import Notfound from './notfound.jsx';
@@ -37,11 +37,14 @@ import {useUser} from './context/UserContext.jsx';
 import Blackpage from './blackpage.jsx'
 import { UserProvider } from './context/UserContext.jsx';
 import axios from 'axios';
+import Mart from './mart.jsx'
 import { Button, Menu, MenuItem } from '@mui/material';
+import { GlobalContext } from "./context/GlobalContext";
+import PostWall from './chat.jsx'
 // import './index.css'
 function App() {
-
-  const ip = '192.168.1.196'
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
+  // const ip = '192.168.1.129';
   const username = localStorage.getItem('username')
   const id = localStorage.getItem('userid')
   const token = localStorage.getItem('token')
@@ -119,7 +122,7 @@ useEffect(() => {
     <Router >
       <Navbar className='navnha' >
         <Container className='navCon' >
-          <Navbar.Brand href="/" className='Ifontmain' style={{'color':'white'}}>
+          <Navbar.Brand href="/" className='' style={{'color':'white'}}>
             <div>Bye</div>
             hunchback
             
@@ -186,6 +189,9 @@ useEffect(() => {
                   <MenuItem>
                   <a href="/upload">เพิ่มคำต้องห้าม</a>
                   </MenuItem>
+                  <MenuItem>
+                  <a href="/commu">กระดานสนทนา</a>
+                  </MenuItem>
                   <MenuItem onClick={handleLogout}>
                   <a href="/home">ออกจากระบบ</a>
                   </MenuItem>
@@ -248,6 +254,7 @@ useEffect(() => {
         <Route path="/changelo" element={<PrivateRoute element={Changelocation} requiredRole="admin"/>} />
         <Route path="/upload" element={<PrivateRoute element={Uploadtext}  requiredRole="admin"/>} />
         <Route path="/dash" element={<PrivateRoute element={Dash} requiredRole="admin" />} />
+        <Route path="/commu" element={<PostWall />} />
 
         <Route path="/PPcam" element={<PoseEstimatorWithWebcam />} />
         <Route path="/PPcam2" element={<PoseEstimatorWithWebcam2 />} />
@@ -280,10 +287,22 @@ useEffect(() => {
         <Route path="/recsv" element={<CsvReader />} />
         <Route path="/recsv2" element={<TfjsClassifier />} />
         <Route path="/recsv3" element={<Re3 />} />
+        <Route path="/shop" element={<Mart />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </Router>
-    {window.location.href == `https://${ip}:5173/PPcam2` || window.location.href == `https://${ip}:5173/PPcam`||window.location.href == `https://${ip}:5173/PPcam3`|| window.location.href == `https://${ip}:5173/PPcam4`? null: <Footer />}
+    {window.location.href == `https://192.168.1.129:5173/PPcam2` ||
+     window.location.href == `https://192.168.1.129:5173/PPcam`||
+     window.location.href == `https://192.168.1.129:5173/PPcam3`|| 
+     window.location.href == `https://192.168.1.129:5173/PPcam4` ||
+     window.location.href == `https://192.168.1.129:5173/PPcam5` ||
+     window.location.href == `https://192.168.1.129:5173/PPcam6` ||
+     window.location.href == `https://192.168.1.129:5173/PPcam7` ||
+     window.location.href == `https://192.168.1.129:5173/recsv3`
+     
+
+     
+     ? null: <Footer />}
     
     </ModelProvider>
   )

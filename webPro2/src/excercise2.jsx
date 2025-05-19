@@ -1,13 +1,14 @@
 import axios from 'axios';
 import './exercise.css'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect,useContext } from 'react'
 import Webcam from "react-webcam";
 import { Button, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import * as tf from '@tensorflow/tfjs';
-
+import { GlobalContext } from "./context/GlobalContext";
 function Excercise2() {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const webcamRef = useRef(null);
   const canvasRef = useRef(null); // Ref for the canvas
@@ -17,7 +18,7 @@ function Excercise2() {
   const [model, setModel] = useState(null);
   const tatalas = async () => {
     try {
-      const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, {exercisename:localStorage.getItem('exerciseName'),userId,exerciseId:localStorage.getItem('exerciseId')});
+      const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, {exercisename:localStorage.getItem('exerciseName'),userId,exerciseId:localStorage.getItem('exerciseId')});
     } catch (error) {
       console.error('Error submitting the form:', error);
     }

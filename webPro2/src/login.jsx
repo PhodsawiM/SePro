@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState,useEffect} from 'react';
+import {useState,useEffect,useContext} from 'react';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -14,16 +14,15 @@ import BoxContainer from './component/BoxContainer';
 import axios from 'axios';
 import {useUser} from './context/UserContext.jsx';
 import './login.css'
-
 import IRight from './assets/right.svg'
 import ILeft from './assets/left.svg'
 // const axiosInstance = axios.create({
 //   baseURL: 'https://192.168.1.194:5000'
 // });
-const ip = '192.168.1.196'
+import { GlobalContext } from "./context/GlobalContext";
+// const ip = import.meta.env.VITE_API_URL;
 function Login() {
-
-
+    const { ip, setGlobalVariable } = useContext(GlobalContext);
     const { setUsername } = useUser();
     const [valueDate, setValueDate] = useState(null);
     const [valueName, setValueName] = useState('');
@@ -54,7 +53,6 @@ const handleLogin = async () => {
 
     try {
         const response = await axios.post(`https://${ip}:5000/login/`, loginData);
-        console.log('clik')
         const { token,id , username ,role} = response.data;
         localStorage.setItem('token',token);
         localStorage.setItem('userid', id);
@@ -239,3 +237,5 @@ const handleSubmitSignUp = async () => {
 }
 
 export {Login}
+
+

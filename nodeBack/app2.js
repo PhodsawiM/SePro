@@ -20,7 +20,9 @@ const { log } = require('console');
 const secret = 'qwerty'
 const axios = require("axios");
 const { param } = require('express-validator');
-const localIP = "192.168.1.196"
+const nodemailer = require('nodemailer');
+// const sgMail = require('@sendgrid/mail');
+const localIP = "192.168.1.129"
 const myIp  = os.networkInterfaces();
 console.log(myIp)
 const PORT = process.env.PORT || 5000;
@@ -48,6 +50,18 @@ const connectDB = async () => {
     }
 };
 connectDB()
+
+const postSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  username: String,
+  content: String,
+  imagePath: { type: String, required: true },
+  timestamp: { type: Date, default: Date.now },
+},{ collection: 'posts' });
+
+const Post = mongoose.model("Post", postSchema);
+
+
 app.use(bodyParser.json());
 const moDirectory = path.join(__dirname, 'mo');
 if (!fs.existsSync(moDirectory)) {
@@ -252,7 +266,7 @@ app.get('/latestLevels', async (req, res) => {
   try {
     const levels = await Level.aggregate([
       { $group: { _id: "$userId", latestLevel: { $last: "$AnalyzeLevel" } } },
-      { $sort: { latestLevel: 1 } }  // Sort by AnalyzeLevel or any criteria
+      { $sort: { latestLevel: 1 } } 
     ]);
 
     if (!levels) {
@@ -291,7 +305,7 @@ app.get('/api/exsersice2/:id',async (req, res) => {
 app.get('/user/:id/exercises', async (req, res) => {
   try {
     const userId = req.params.id;
-    const limit = 10;
+    const limit = 1;
     const history = await History.find({ userId })
       .populate('exerciseId')
       .limit(limit);
@@ -446,10 +460,57 @@ app.get('/dashData',async (req,res) => {
     res.status(500).json({ message: 'Failed to retrieve exercises' });
   }
 })
+
+
+app.get('/CountExer', async (req, res) => {
+  try {
+    const results = await History.aggregate([
+      {
+        $group: {
+          _id: "$exercisename",
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { count: -1 } // Sort by count descending
+      },
+      {
+        $project: {
+          exercisename: "$_id",
+          value: "$count",
+          _id: 0
+        }
+      }
+    ]);
+    res.status(200).json({ data: results });
+  } catch (error) {
+    console.error('Error retrieving exercises:', error);
+    res.status(500).json({ message: 'Failed to retrieve exercises' });
+  }
+});
+
+
+
+
 app.post('/uploadToPy/:id', uploadTP.single('imageTP'), async (req, res) => {
+  function calculateAge(birthdateString) {
+    const birthdate = new Date(birthdateString);
+    const today = new Date();
+    let age = today.getFullYear() - birthdate.getFullYear();
+    const monthDiff = today.getMonth() - birthdate.getMonth();
+    const dayDiff = today.getDate() - birthdate.getDate();
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+    return age;
+  }
+
   try {
     const userId = req.params.id
     console.log(userId)
+    const user = await User.findById(req.params.id);
+    const age = user.dateOfBirth
+    console.log('age',calculateAge(age))
     const imagePath = path.resolve(__dirname, req.file.path);
     const pythonScriptPath = 'D:/Python_BarPro/Test_HPE/testten2.py';
     const formattedImagePath = imagePath.replace(/\\/g, '/');
@@ -465,13 +526,32 @@ app.post('/uploadToPy/:id', uploadTP.single('imageTP'), async (req, res) => {
     });
     pythonProcess.on('close',async (code) => {
       if (code === 0) {
+        let LevelR = 0
         try {
           const outputData = JSON.parse(pythonOutput.trim());
           console.log("Parsed Python Output:", outputData);
           const angle = outputData.angle;
           const angleres = outputData.angleres;
           const angleresR = outputData.angleresR;
-          const LevelR = outputData.LevelR;
+          if (age < 50){
+            LevelR = outputData.LevelR;
+          } 
+          
+          else{
+            if (angleres < 30 ){
+              LevelR = 1;       
+            }
+            else if( angleres <= 40 && angleres >= 30 ){
+              LevelR = 2;
+            }
+            else if( angleres <= 50 && angleres >= 40  ){
+              LevelR = 3;
+            }
+            else{
+              LevelR = 4;
+            }
+          }
+          
           const analyseMha = new Level({
             userId: userId,
             AnalyzeLevel: LevelR,
@@ -500,12 +580,11 @@ app.post('/uploadToPy/:id', uploadTP.single('imageTP'), async (req, res) => {
 
 app.post("/upload-csv", async (req, res) => {
   try {
-    const data = req.body;  // The CSV data sent from React
+    const data = req.body;  
     if (data.length === 0) {
       return res.status(400).json({ message: "No data to upload." });
     }
     console.log(data)
-    // Insert the data into MongoDB
     await Btext.insertMany(data);
     res.status(200).json({ message: "Data uploaded successfully!" });
   } catch (error) {
@@ -528,6 +607,60 @@ app.put('/api/users/update-username', async (req, res) => {
   }
 });
 
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'taoism.3214steam1331@gmail.com',
+    pass: 'ltgp bjxp nfqn ocjw' 
+  }
+});
+app.post('/send-email', async (req, res) => {
+  const { to, subject, text } = req.body;
+  const mailOptions = {
+    from: 'sinus',
+    to,
+    subject,
+    html: `<p>${text}</p><br><img src="cid:logo"/>`, // shows inline image
+    attachments: [
+      {
+        filename: 'logo.jpg',
+        path: path.join(__dirname, 'images/logo.jpg'), // make sure the file exists
+        cid: 'logo' // same as in img src
+      },
+    ]
+  };
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+    res.status(200).send('Email sent successfully!');
+  } catch (error) {
+    console.error('Error sending email:', error.message);
+    res.status(500).send('Failed to send email');
+  }
+});
+
+
+app.post("/api/post", async (req, res) => {
+  const { username, content, userId,imagePath } = req.body;
+  if (!username || !content || !userId || !imagePath) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+  try {
+    const newPost = await Post.create({imagePath, username, content, userId, timestamp: new Date() });
+    res.status(201).json(newPost);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.get("/api/posts", async (req, res) => {
+  try {
+    const posts = await Post.find({ content: { $ne: "" } }).sort({ timestamp: -1 });
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch posts" });
+  }
+});
 
 app.use('/uploads', express.static('uploads'));
 app.use('/exerimgs', express.static('exerimgs'));

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './footer.css'
 import FaceB from './assets/facebook.svg'
 import Line from './assets/line.svg'
 import Mail from './assets/email.svg'
+import { GlobalContext } from "./context/GlobalContext";
+// import { useContext } from 'react'
 function Footer() {
+    const { ip, setGlobalVariable } = useContext(GlobalContext);
   return (
     <div className=''>
         <div className='flex flex-col bg-black text-white w-full'>

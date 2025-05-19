@@ -10,6 +10,7 @@ import Papa from "papaparse";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { ConstructionOutlined } from '@mui/icons-material';
+import { GlobalContext } from "./context/GlobalContext";
 
 // import { AuthContext } from './AuthContext';
 // const os = require('os');
@@ -41,12 +42,16 @@ import { ConstructionOutlined } from '@mui/icons-material';
 const host = window.location.hostname; // This gets the hostname (e.g., 'localhost' or '172.21.32.1')
 const port = 5000; // Fallback to port 5000 if not specified
 // const HostIP = 'https://8026-2405-9800-bcb1-8817-fca2-a283-7eb9-3b8e.ngrok-free.app/'
-const HostIP = 'http://192.168.1.194'
+// const HostIP = import.meta.env.VITE_API_URL
+const HostIP = `https://192.168.1.196:5000`
+// const HostIP = `https://${ip}:5000`
+// const ip = "https://192.168.1.129:5000";
 // Create an Axios instance with the dynamic base URL
 const axiosInstance = axios.create({
   baseURL: `${HostIP}:${port}`, // Construct the URL dynamically
 });
 const Test = () =>{
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState(null);
@@ -469,6 +474,7 @@ const Popup = ({ message, onClose }) => {
   );
 };
 const UpData = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const [exerciseName, setExerciseName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
@@ -486,7 +492,6 @@ const UpData = () => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-
       const formData = new FormData();
       formData.append('exerciseName', exerciseName);
       formData.append('description', description);
@@ -496,7 +501,7 @@ const UpData = () => {
       formData.append('modelUrl', modelUrl);
 
       try {
-          const response = await axios.post('https://192.168.1.194:5000/api/exercises', formData, {
+          const response = await axios.post(`https://${ip}:5000/api/exercises`, formData, {
               headers: { 'Content-Type': 'multipart/form-data' },
           });
           console.log('Data submitted successfully:', response.data);
@@ -1105,7 +1110,7 @@ const PoseModelTraining = () => {
         await tf.ready();
   
         // Load the CSV file
-        const response = await fetch('https://192.168.1.194:5173/data.csv'); // Path to your CSV file in the public folder
+        const response = await fetch(`https://192.168.1.129:5173/data.csv`); // Path to your CSV file in the public folder
   
         // Check if the file was found
         if (!response.ok) {
@@ -1377,6 +1382,10 @@ const CsvReader = () => {
 };
 
 
+// import React, { useState, useEffect } from 'react';
+// import * as tf from '@tensorflow/tfjs';
+// import Papa from 'papaparse';
+
 const TfjsClassifier = () => {
   const [model, setModel] = useState(null);
   const [accuracy, setAccuracy] = useState(null);
@@ -1424,7 +1433,7 @@ const TfjsClassifier = () => {
   const createModel = (inputSize, numClasses) => {
       const model = tf.sequential();
       model.add(tf.layers.dense({ inputShape: [inputSize], units: 32, activation: "relu" }));
-      model.add(tf.layers.dense({ units: 16, activation: "relu" }));
+      // model.add(tf.layers.dense({ units: 16, activation: "relu" }));
       model.add(tf.layers.dense({ units: numClasses, activation: "softmax" }));
       
       model.compile({
@@ -1526,7 +1535,7 @@ const loadPretrainedModel = async () => {
 };
 
   return (
-      <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
+      <div className="min-h-[500px] m-10 p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
           <h2 className="text-xl font-semibold text-center mb-4">TensorFlow.js Classifier</h2>
 
           <input type="file" accept=".csv" onChange={handleFileUpload} className="mb-4" />
@@ -1563,5 +1572,4 @@ const loadPretrainedModel = async () => {
       </div>
   );
 };
-
 export {CsvReader,TfjsClassifier,UpData,PoseModelTraining,PoseDataTransformer,PoseModel,VideoFrameExtractor,Test,Test_sign,Register,UserProfile,ParentComponent,LoginTest,LoginPage,YoloComponent,Popup}

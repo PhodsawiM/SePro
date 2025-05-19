@@ -15,8 +15,8 @@ const userData = new mongoose.Schema(
     }
 )
 const imageSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     filename:{type: String},
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     imagePath: { type: String, required: true },
     uploadDate: { type: Date, default: Date.now },},
     { collection: 'images' }

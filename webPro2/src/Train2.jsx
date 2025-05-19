@@ -1,7 +1,7 @@
 import React from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { useModel } from './ModelContext';
-
+import { GlobalContext } from "./context/GlobalContext";
 const Train = () => {
   const { setModel } = useModel();
 

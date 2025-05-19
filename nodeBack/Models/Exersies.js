@@ -4,6 +4,7 @@ const exerciseName = new mongoose.Schema({
     describtion: { type: String, required: true,},
     replete:{type: Number, required: true,},
     set: {type: Number, required: true,},
+    
     model_url:{type:String,require:true},
     createdAt: {type: Date,default: Date.now,},
 });

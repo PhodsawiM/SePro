@@ -1,28 +1,31 @@
-import React, { useEffect, useState  } from 'react';
+import React, { useEffect, useState,useContext  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ImgNha from './assets/img.svg';
 import IRight from './assets/right.svg';
 import './exercise.css';
-const ip = 'https://192.168.1.196'
+import { GlobalContext } from "./context/GlobalContext";
+// const ip = 'https://192.168.1.129'
 function Exercise() {
-  const [exercises, setExercises] = useState([]);
+  const { ip } = useContext(GlobalContext);
+  
   const [loading, setLoading] = useState(true);
-useEffect(() => {
-  const fetchExercises = async () => {
-    try {
-      const response = await axios.get('https://192.168.1.196:5000/exercises/');
-      setExercises(response.data.data);
-    } catch (error) {
-      console.error('Error fetching exercises:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
-  fetchExercises();
-}, []);
-  
+  const [exercises, setExercises] = useState([]);
+  useEffect(() => {
+    const fetchExercises = async () => {
+      try {
+        const response = await axios.get(`https://${ip}:5000/exercises/`);
+        setExercises(response.data.data);
+      } catch (error) {
+        console.error('Error fetching exercises:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchExercises();
+  }, []);
+    
 
   return (
     <div
@@ -32,8 +35,9 @@ useEffect(() => {
       <div className='text-blue-600 text-2xl p-2 bg-white rounded-lg m-2 w-[80vw]'>
         การยืดกล้ามเนื้อ → เสริมสร้างกล้ามเนื้อ → พัฒนาเสถียรภาพและควบคุมท่าทาง
       </div>
-      <div className='VBOX shadow-lg mb-10'>
-        <div className='VBOXcon space-y-5 '>
+      <div className=' rounded-lg shadow-lg mb-5'
+      style={{ backgroundImage: `url('https://${ip}:5173/image/bfim2.png')` }}>
+        <div className='overflow-y-auto h-[480px] p-2 space-y-5 bar' style={{scrollbarWidth: 'none'}}>
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -49,11 +53,11 @@ useEffect(() => {
 const ExerciseCard = ({ exercise }) => {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
-
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
 useEffect(() => {
   const fetchImages = async () => {
     try {
-      const response = await axios.get(`https://192.168.1.196:5000/exercises/${exercise._id}`);
+      const response = await axios.get(`https://${ip}:5000/exercises/${exercise._id}`);
       console.log(response.data.data)
       setImages(response.data.data);
     } catch (error) {
@@ -77,16 +81,18 @@ useEffect(() => {
       navigate('/PPcam5');
     }else if(localStorage.getItem('exerciseName') === 'Reverse Flys'){
       navigate('/PPcam6');
-    }else if(localStorage.getItem('exerciseName') === 'Superman Hold'){
-      navigate('/PPcam7');
+    }else if(localStorage.getItem('exerciseName') === 'Chest Opener'){
+      navigate('/recsv3');
     }
   };
+  const bgImage = `bg-[url('https://${ip}:5173/image/bgim.png')]`;
   return (
-    <div className="flex bg-[url('https://192.168.1.196:5173/image/bgim.png')] bg-cover bg-center flex-col md:flex-row justify-between shadow-lg m-2 w-full space-y-4 border-gray-500 rounded-lg p-2">
+    <div className={`flex  bg-cover mx-auto bg-center flex-col md:flex-row justify-between shadow-lg my-2 w-[80vw] space-y-4 border-gray-500 rounded-lg p-2`}
+    style={{ backgroundImage: `url('https://${ip}:5173/image/bgim.png')` }}>
       <div className='flex mx-auto min-w-24 md:max-w-[150px] border-2 border-black rounded-lg'>
         {images.length ? (
           <img className='max-h-[800px] object-cover rounded-lg'
-            src={`${ip}:5000${images[0].imagePath}`}
+            src={`https://${ip}:5000${images[0].imagePath}`}
             alt={images[0].filename}
             onError={(e) => { e.target.onerror = null; e.target.src = ImgNha; }}
             />
@@ -110,10 +116,12 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <div className='flex bg-red-500  mx-auto mt-1 rounded-lg md:max-w-[50px] max-w-full md:ml-8 md:min-w-32'>
-        <button onClick={goToPage}>
-          <img className='w-72 h-24' src={IRight} />
-        </button>
+      <div className='my-auto mx-auto'>
+        <div className='flex bg-red-500 h-[100px] md:h-[200px] mx-auto mt-1 rounded-lg md:max-w-[50px] max-w-full md:ml-8 md:min-w-32'>
+          <button onClick={goToPage}>
+            <img className='w-72 h-24' src={IRight} />
+          </button>
+        </div>
       </div>
     </div>
   );

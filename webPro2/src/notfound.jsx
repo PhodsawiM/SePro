@@ -1,6 +1,8 @@
-import React from 'react'
+import React ,{ useContext }from 'react'
 import './notfound.css'
+import { GlobalContext } from "./context/GlobalContext";
 function Notfound() {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   return (
     <div className='flex min-h-screen items-center justify-center bg-black'>
       <div className='flex flex-col items-center'>

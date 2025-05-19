@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState,useContext } from 'react';
 import Webcam from 'react-webcam';
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import * as tf from '@tensorflow/tfjs';
@@ -6,8 +6,9 @@ import { redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Papa from "papaparse";
-
+import { GlobalContext } from "./context/GlobalContext";
 const PoseEstimatorWithWebcam2 = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);
@@ -70,7 +71,7 @@ const PoseEstimatorWithWebcam2 = () => {
     if (count === 10) {
       const activateFunct = async () => {
         try {
-          const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+          const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
           console.log(res);
           navigate('/history');
         } catch (error) {
@@ -234,10 +235,10 @@ const PoseEstimatorWithWebcam2 = () => {
   };
   return (
     <div className="flex flex-col w-full min-h-screen h-full bg-gray-800 items-center justify-center">
-      <div className="w-[98vw] h-[100vh]">
+      <div className="w-[98.5vw] h-screen mx-auto">
         <Webcam
           ref={webcamRef}
-          className="absolute top-20 left-0 w-full h-full object-cover rounded-lg"
+          className="flex justify-center items-center w-full h-full object-cover rounded-lg"
           videoConstraints={{
             width: 640,
             height: 480,
@@ -245,21 +246,21 @@ const PoseEstimatorWithWebcam2 = () => {
           }}
           mirrored={true}
         />
-        <canvas
+        {/* <canvas
           ref={canvasRef}
-          className="absolute top-20 left-0 w-full h-full rounded-lg"
-        />
+          className="flex justify-center items-center w-full h-full rounded-lg"
+        /> */}
       </div>
       {/* <div className='text-white'>
         {poseState}
       </div> */}
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-4/5 bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
+        <div className="absolute mt-[80px] inset-1 h-4/5">
           <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
           <p className="text-blue-600 text-8xl text-left">{count}</p>
         </div>
@@ -287,6 +288,7 @@ const PoseEstimatorWithWebcam2 = () => {
 
 // ----------------------------------------------------------------------------------------------
 const PoseEstimatorWithWebcam3 = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);
@@ -321,7 +323,7 @@ const positionTestRef = useRef(0)
     if (count === 10) {
       const activateFunct = async () => {
         try {
-          const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+          const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
           console.log(res);
           navigate('/history');
         } catch (error) {
@@ -615,7 +617,7 @@ const positionTestRef = useRef(0)
   // };
   return (
     <div className="flex flex-col w-full min-h-screen h-full bg-gray-800 items-center justify-center">
-      <div className="w-[95vw] h-[100vh]">
+      <div className="w-[98.5vw] h-screen mx-auto">
         <Webcam
           ref={webcamRef}
           className="absolute top-20 left-0 w-full h-full object-cover rounded-lg"
@@ -628,28 +630,28 @@ const positionTestRef = useRef(0)
         />
         <canvas
           ref={canvasRef}
-          className="absolute top-20 left-0 w-full h-full rounded-lg"
+          className=" flex justify-center items-center left-0 w-full h-full rounded-lg"
         />
       </div>
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {distance !== null ? (
           <p>Distance between left knee and left hip: {distance.toFixed(2)}</p>
         ) : (
           <p>Calculating...</p>
         )}
-      </div>
+      </div> */}
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-screen bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
+        <div className="absolute mt-[80px] inset-1 h-screen">
           <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
           <p className="text-blue-600 text-8xl text-left">{count}</p>
         </div>
       )}
-      <div className="text-white mt-4">{count}</div>
+      {/* <div className="text-white mt-4">{count}</div> */}
       {prediction && (
         <div className="mt-4 text-white">
           <h3 className="text-lg font-bold">Prediction Result:</h3>
@@ -662,9 +664,9 @@ const positionTestRef = useRef(0)
           </p>
         </div>
       )}
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {Pretenshow}
-      </div>
+      </div> */}
     </div>
   );
   
@@ -677,6 +679,7 @@ const positionTestRef = useRef(0)
 
 // ----------------------------------------------------------------------------------------------
 const PoseEstimatorWithWebcam4 = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid');
   const navigate = useNavigate();
   const webcamRef = useRef(null);
@@ -726,7 +729,7 @@ const PoseEstimatorWithWebcam4 = () => {
     if (count === 10) {
       const activateFunct = async () => {
         try {
-          const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+          const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
           console.log(res);
           navigate('/history');
         } catch (error) {
@@ -879,12 +882,12 @@ const PoseEstimatorWithWebcam4 = () => {
         )}
       </div>
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-screen bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
+        <div className="absolute mt-[80px] inset-1 h-screen">
           <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
           <p className="text-blue-600 text-8xl text-left">{count}</p>
         </div>
@@ -910,6 +913,7 @@ const PoseEstimatorWithWebcam4 = () => {
 };
 // ----------------------------------------------------------------------------------------------
 const PoseEstimatorWithWebcam5 = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);
@@ -951,7 +955,7 @@ useEffect(() => {
   if (count === 10) {
     const activateFunct = async () => {
       try {
-        const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+        const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
         console.log(res);
         navigate('/history');
       } catch (error) {
@@ -1092,26 +1096,26 @@ useEffect(() => {
           className="absolute top-20 left-0 w-full h-full rounded-lg"
         />
       </div>
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {distance !== null ? (
           <p>Distance between left knee and left hip: {distance.toFixed(2)}</p>
         ) : (
           <p>Calculating...</p>
         )}
-      </div>
+      </div> */}
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-screen bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
+        <div className="absolute mt-[80px] inset-1 h-screen">
           <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
           <p className="text-blue-600 text-8xl text-left">{count}</p>
           <p className="text-blue-600 text-8xl text-left">{distance}</p>
         </div>
       )}
-      <div className="text-white mt-4">{count}</div>
+      {/* <div className="text-white mt-4">{count}</div> */}
       {prediction && (
         <div className="mt-4 text-white">
           <h3 className="text-lg font-bold">Prediction Result:</h3>
@@ -1133,6 +1137,7 @@ useEffect(() => {
 };
 // ----------------------------------------------------------------------------------------------
 const ReverseFlys = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);
@@ -1141,7 +1146,7 @@ const ReverseFlys = () => {
   const [isModelLoaded, setIsModelLoaded] = useState(false);
   const sound = new Audio("./public/ring.mp3");
   const [count, setCount] = useState(0);
-
+  const [Sett, ssetCout] = useState(0);
   const [model, setModel] = useState(null);
   const [csvData, setCsvData] = useState(null);
   const [isTraining, setIsTraining] = useState(false);
@@ -1171,10 +1176,14 @@ const positionTestRef = useRef(0)
     return Math.sqrt(dx * dx + dy * dy);
 }
 useEffect(() => {
-  if (count === 10) {
+  if (count === 10){
+    ssetCout((prevCounts) => prevCounts + 1)
+    setCount(0)
+  }
+  if (count === 10 && Sett === 4) {
     const activateFunct = async () => {
       try {
-        const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+        const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
         console.log(res);
         navigate('/history');
       } catch (error) {
@@ -1301,26 +1310,26 @@ useEffect(() => {
           className="absolute top-20 left-0 w-full h-full rounded-lg"
         />
       </div>
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {distance !== null ? (
           <p>Distance between left knee and left hip: {distance.toFixed(2)}</p>
         ) : (
           <p>Calculating...</p>
         )}
-      </div>
+      </div> */}
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-screen bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
+        <div className="absolute mt-[80px] inset-1 h-screen">
           <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
           <p className="text-blue-600 text-8xl text-left">{count}</p>
           <p className="text-blue-600 text-8xl text-left">{distance}</p>
         </div>
       )}
-      <div className="text-white mt-4">{count}</div>
+      {/* <div className="text-white mt-4">{count}</div> */}
       {prediction && (
         <div className="mt-4 text-white">
           <h3 className="text-lg font-bold">Prediction Result:</h3>
@@ -1342,6 +1351,7 @@ useEffect(() => {
 };
 // ----------------------------------------------------------------------------------------------
 const SuperManHold = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);
@@ -1350,7 +1360,7 @@ const SuperManHold = () => {
   const [isModelLoaded, setIsModelLoaded] = useState(false);
   const sound = new Audio("./public/ring.mp3");
   const [count, setCount] = useState(0);
-
+  const [Sett, ssetCout] = useState(0);
   const [model, setModel] = useState(null);
   const [csvData, setCsvData] = useState(null);
   const [isTraining, setIsTraining] = useState(false);
@@ -1383,7 +1393,7 @@ useEffect(() => {
   if (count === 10) {
     const activateFunct = async () => {
       try {
-        const res = await axios.post(`https://192.168.1.194:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+        const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
         console.log(res);
         navigate('/history');
       } catch (error) {
@@ -1518,26 +1528,26 @@ useEffect(() => {
           className="absolute top-20 left-0 w-full h-full rounded-lg"
         />
       </div>
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {distance !== null ? (
           <p>Distance between left knee and left hip: {distance.toFixed(2)}</p>
         ) : (
           <p>Calculating...</p>
         )}
-      </div>
+      </div> */}
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-screen bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
+        <div className="absolute mt-[80px] inset-1 h-screen">
           <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
           <p className="text-blue-600 text-8xl text-left">{count}</p>
           <p className="text-blue-600 text-8xl text-left">{distance}</p>
         </div>
       )}
-      <div className="text-white mt-4">{count}</div>
+      {/* <div className="text-white mt-4">{count}</div> */}
       {prediction && (
         <div className="mt-4 text-white">
           <h3 className="text-lg font-bold">Prediction Result:</h3>
@@ -1550,14 +1560,15 @@ useEffect(() => {
           </p>
         </div>
       )}
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {Pretenshow}
-      </div>
+      </div> */}
     </div>
   );
   
 };
 const Re3 = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);
@@ -1566,6 +1577,7 @@ const Re3 = () => {
   const [isModelLoaded, setIsModelLoaded] = useState(false);
   const sound = new Audio("./public/ring.mp3");
   const [count, setCount] = useState(0);
+  const [Sett, ssetCout] = useState(0);
   const [model, setModel] = useState(null);
   const [modelpre, setModelpre] = useState(null);
   const [data0,setdata0] = useState(null);
@@ -1580,7 +1592,7 @@ const Re3 = () => {
 
 const loadPretrainedModel = async () => {
   try {
-      const model = await tf.loadLayersModel(`https://192.168.1.194:5173/models/my-pretrained-model.json`);
+      const model = await tf.loadLayersModel(`https://${ip}:5173/models/my-pretrained-model.json`);
       setModelpre(model);
       console.log("Model loaded from public folder.");
   } catch (error) {
@@ -1589,7 +1601,7 @@ const loadPretrainedModel = async () => {
 };
 useEffect(()=>{
   const handlePredict = async () => {
-    await loadPretrainedModel(); // Reload the model before making a prediction
+    await loadPretrainedModel(); 
     if (!modelpre || !inputData) return;
     const inputArray = inputData.split(",").map(Number);
     console.log(inputArray)
@@ -1599,21 +1611,61 @@ useEffect(()=>{
         return;
     }
     tf.tidy(() => {
-        const inputTensor = tf.tensor2d([inputArray]);
-        console.log("Input Tensor:", inputTensor.arraySync());
+      const inputTensor = tf.tensor2d([inputArray]);
+      console.log("Input Tensor:", inputTensor.arraySync());
   
-        const predictionTensor = modelpre.predict(inputTensor);
-        console.log(predictionTensor.argMax(1).dataSync())
-        const predictedClass = predictionTensor.argMax(1).dataSync()[0];
+      const predictionTensor = modelpre.predict(inputTensor);
   
-        console.log("Predicted Class:", predictedClass);
-        setPrediction(predictedClass);
-    });
+      const predictionArray = predictionTensor.arraySync()[0];
+      const predictedClass = predictionArray.indexOf(Math.max(...predictionArray)); 
+      const confidenceScore = Math.max(...predictionArray); 
+  
+      console.log("Predicted Class:", predictedClass, "Confidence Score:", confidenceScore);
+  
+      if (confidenceScore >= 0.7) {
+          setPrediction(predictedClass);
+  
+          if (predictedClass === 0 && poseStateRef.current === "down") {
+
+              setCount((prevCount) => prevCount + 1);
+              setPosstate("up");
+              poseStateRef.current = "up";
+              playSound();
+
+          } else if (predictedClass === 1 && poseStateRef.current === "up") {
+
+              setPosstate("down");
+              poseStateRef.current = "down";
+              playSound();
+
+          }
+      } else {
+          console.warn("Low confidence prediction. Ignoring result.");
+      }
+  });
+  
   };
   handlePredict();
 },[inputData])
 
-
+useEffect(() => {
+  if (count === 10){
+    ssetCout((prevCounts) => prevCounts + 1)
+    setCount(0)
+  }
+  if (count === 10 && Sett === 4) {
+    const activateCount = async () => {
+      try {
+        const res = await axios.post(`https://${ip}:5000/exsersice2/${userId}`, { exercisename: localStorage.getItem('exerciseName'), userId, exerciseId: localStorage.getItem('exerciseId') });
+        console.log(res);
+        navigate('/history');
+      } catch (error) {
+        console.error('Error submitting the form:', error);
+      }
+    };
+    activateCount()
+  }
+}, [count]);
   useEffect(() => {
     const loadModel = async () => {
       try {
@@ -1707,26 +1759,26 @@ useEffect(()=>{
           className="absolute top-20 left-0 w-full h-full rounded-lg"
         />
       </div>
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {distance !== null ? (
           <p>Distance between left knee and left hip: {distance.toFixed(2)}</p>
         ) : (
           <p>Calculating...</p>
         )}
-      </div>
+      </div> */}
       {!isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px] bg-black opacity-50">
+        <div className="absolute mt-[80px] inset-1 h-screen bg-black opacity-50">
           <p className="text-white text-5xl">Loading model...</p>
         </div>
       )}
       {isModelLoaded && (
-        <div className="absolute mt-[80px] inset-1 h-[720px]">
-          <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p>
+        <div className="absolute mt-[80px] inset-1 h-screen">
+          {/* <p className="text-blue-600 text-5xl text-left">{poseStateRef.current}</p> */}
           <p className="text-blue-600 text-8xl text-left">{count}</p>
           <p className="text-blue-600 text-8xl text-left">{prediction}</p>
         </div>
       )}
-      <div className="text-white mt-4">{count}</div>
+      {/* <div className="text-white mt-4">{count}</div> */}
       {prediction && (
         <div className="mt-4 text-white">
           <h3 className="text-lg font-bold">Prediction Result:</h3>
@@ -1739,9 +1791,9 @@ useEffect(()=>{
           </p>
         </div>
       )}
-      <div className='text-white'>
+      {/* <div className='text-white'>
         {Pretenshow}
-      </div>
+      </div> */}
     </div>
   );
   
@@ -1749,6 +1801,7 @@ useEffect(()=>{
 
 
 const PoseDataTrainer = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const [trainingData, setTrainingData] = useState([]);
   const [testData, setTestData] = useState([]);
   const [trainingLabels, setTrainingLabels] = useState([]);

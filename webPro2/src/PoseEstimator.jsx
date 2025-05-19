@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState,useContext } from 'react';
 import Webcam from 'react-webcam';
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import * as tf from '@tensorflow/tfjs';
@@ -6,7 +6,9 @@ import { redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Papa from "papaparse";
+import { GlobalContext } from "./context/GlobalContext";
 const PoseEstimatorWithWebcam = () => {
+  const { ip, setGlobalVariable } = useContext(GlobalContext);
   const userId = localStorage.getItem('userid')
   const navigate = useNavigate()
   const webcamRef = useRef(null);

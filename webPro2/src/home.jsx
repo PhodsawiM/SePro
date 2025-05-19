@@ -5,7 +5,9 @@ import './home.css'
 import {Popup} from './test'
 import SVG from './assets/img.svg'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { GlobalContext } from "./context/GlobalContext";
 function Home() {
+    const { ip, setGlobalVariable } = useContext(GlobalContext);
   return (
     <div
     className={`flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-black via-purple-950 to-blue-900  animate-gradient-x `}

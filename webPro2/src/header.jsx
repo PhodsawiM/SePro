@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Analyze from './analyze';
 import Exercise from './exercise';
 import History from './history';
+import { GlobalContext } from "./context/GlobalContext";
+const { ip, setGlobalVariable } = useContext(GlobalContext);
 function Header() {
   return (
     <>
